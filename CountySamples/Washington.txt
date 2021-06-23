@@ -1,0 +1,70 @@
+From: Binh - Washington County 
+
+This rule is on the taxlot layer. Field = Taxlot
+
+
+var pointxy=Centroid($feature)
+
+return {
+
+       //return the same value from the field Taxlot
+
+      "result": $feature.Taxlot,
+
+       //this keyword indicates an edit that need to happen, its an array since we can make many edits
+
+       "edit": [ 
+
+           { 
+
+               //the other class we want to edit
+
+               "className" : "Taxlot_Labels",
+
+               //the type of edit, in this case we want to add so we say `adds`, its an array since we can make many inserts
+
+               "adds" : [
+
+                      
+
+                      {
+
+                            //the attribute of the feature we want to add,
+
+                            // we only want to populate the point Taxlot field with polygon Taxlot field
+
+                            "attributes": 
+
+                             {
+
+                                   "Taxlot": $feature.Taxlot
+
+ 
+
+                               },
+
+                            //we want to use the centroid geometry to insert the point
+
+                            "geometry": pointxy
+
+ 
+
+                      }
+
+ 
+
+             ]
+
+ 
+
+ 
+
+            }
+
+     
+
+     ]
+
+ 
+
+}
