@@ -22,7 +22,7 @@ ImportLog - Standard ESRI Log
 
 Index - Standard ESRI Index subdirectory 
 
-ORMAPPFTemplate.gdp - The new database template (includes empty feature classes, fields, and domains) 
+ORMAPPFTemplate.gdb - The new database template (includes empty feature classes, fields, and domains) 
 
 Default.tbx - default tool box 
 
@@ -30,7 +30,7 @@ OrMapPF.aprx - ESRI ArcGIS Pro project file
 
 
 ----
-These two are things that were in the Esri Sharepoint folder.
+These two are things that were in the Esri Sharepoint folder. They might not stay here.
 
 LabelToAnnoTest - 2/22/21 Dean says "I have completed my tests for converting bearing/distance labels to annotation for a variety of scales and styles.  It all seems to work OK.   
 
