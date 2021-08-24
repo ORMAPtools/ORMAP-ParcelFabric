@@ -1,6 +1,14 @@
 # ORMAP Parcel Fabric project
 
-ReadMe - Version 1.06 
+ReadMe - Version 1.07
+
+## Changes in 1.07
+
+Looks like the APRX file (OrMapPF.aprx) changed 
+and the meeting notes have been updated to include June 16. (Documents/MeetingNotes.docx).
+
+There were some changes in the template GDB and it was not included in the 1.06
+version. It has been added, for now anyway. (OrMapPFTemplate.gdb)
 
 ## Changes to the design for 1.06 
 
