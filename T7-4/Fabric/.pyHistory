@@ -1,0 +1,9 @@
+﻿ORCATSLEGALIN = "C:/Taxmap/T7-4/ORCATS/REAL_LEGAL.csv" ORCATSXREFIN = "C:/Taxmap/T7-4/ORCATS/REAL_MAP_XREF.csv" ORCATSLEGAL = "Real_Legal"  ORCATSXREF = "Real_Xref"  ORCATSLEGALOUT = OutGDB + "/" + ORCATSLEGAL ORCATSXREFOUT = OutGDB + "/" + ORCATSXREF  OutClassTxLtPly = OutGDB + "/TaxlotsFD/Taxlot"
+InGDB ="C:/Taxmap/T7-4/geodb/townedgeo.gdb" OutGDB = "C:/Taxmap/T7-4/fabric/OrMapPFTemplate.gdb"  # only needs if you have ORCATS A&T TABLES AVAILALBE  ORCATSLEGALIN = "C:/Taxmap/T7-4/ORCATS/REAL_LEGAL.csv" ORCATSXREFIN = "C:/Taxmap/T7-4/ORCATS/REAL_MAP_XREF.csv" ORCATSLEGAL = "Real_Legal"  ORCATSXREF = "Real_Xref"  ORCATSLEGALOUT = OutGDB + "/" + ORCATSLEGAL ORCATSXREFOUT = OutGDB + "/" + ORCATSXREF  OutClassTxLtPly = OutGDB + "/TaxlotsFD/Taxlot"
+arcpy.Delete_management(ORCATSLEGALOUT) arcpy.Delete_management(ORCATSXREFOUT)  arcpy.TableToTable_conversion(ORCATSLEGALIN, OutGDB, ORCATSLEGAL) arcpy.TableToTable_conversion(ORCATSXREFIN, OutGDB, ORCATSXREF)
+arcpy.AddField_management(ORCATSXREFOUT, "ORCATSRECORD", "TEXT", "", "", "", "", "", "")
+arcpy.JoinField_management(ORCATSXREFOUT, "Account_id", ORCATSLEGALOUT, "Account_id")
+arcpy.CalculateField_management(ORCATSXREFOUT,"Real_Xref.ORCATSRECORD",'!Real_Legal.SUBDIVISION!',"PYTHON3")
+arcpy.CalculateField_management(ORCATSXREFOUT,"ORCATSRECORD",'!SUBDIVISION!',"PYTHON3"
+arcpy.CalculateField_management(ORCATSXREFOUT,"ORCATSRECORD",'!SUBDIVISION!',"PYTHON3")
+arcpy.RemoveJoin_management (ORCATSXREFOUT)
