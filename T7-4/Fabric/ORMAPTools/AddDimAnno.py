@@ -4,6 +4,9 @@
 #
 # Tool is run from ArcPro ToolBox/Tool - "CreateDDAnnoFromLabels" in default.tbx
 #
+#
+# Database Required - In local folder TownEd.gdb and Default.gdb 
+# 
 # Steps
 # 1. Get parameter values
 # 2. Set Map Layers and default paths
@@ -33,13 +36,14 @@ Map = thisProject.activeMap
 MapIndexLyr = Map.listLayers(MapIndexLayer)[0]
 TaxlotLineLyr = Map.listLayers(TaxlotLinesLayer)[0]
 AnnoLyr = Map.listLayers(AnnoLayer)[0]
+FolderPath = thisProject.homeFolder 
 
-ScriptPath = os.getcwd()
+#ScriptPath = os.getcwd()
 
-OutGDB =  ScriptPath + "\\OrMapPFTemplate.gdb"
-WorkGDB =  ScriptPath + "\\Default.gdb"
+OutGDB =  FolderPath + "\\TownEd.gdb"
+WorkGDB =  FolderPath + "\\Default.gdb"
 
-arcpy.AddMessage (ScriptPath)
+arcpy.AddMessage (FolderPath)
 arcpy.AddMessage (WorkGDB)
 
 # 3. Set temporary layers (also make sure they are deleted 
@@ -76,7 +80,11 @@ arcpy.CalculateField_management(AnnoLyr, "SymbolID",annoID, "PYTHON3")
 arcpy.CalculateField_management(AnnoLyr, "AnnotationClassID",annoID, "PYTHON3")
 arcpy.CalculateField_management(AnnoLyr, "MapNumber","'" + MapNumber + "'", "PYTHON3")
 
+# Turn Off Labels
 
+for lblClass in TaxlotLineLyr.listLabelClasses():
+    lblClass.visible = False
+    
 # Cleanup temp layers 
 
 arcpy.Delete_management (GroupAnno)

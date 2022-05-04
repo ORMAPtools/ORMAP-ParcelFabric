@@ -82,7 +82,7 @@ Title = "T." + str(int(Town)) + " " + TownDir + ". R." + str(int(Range)) + " " +
 if Section != "00":   
     QuarterTitle = ""
     QtrQtrTitle = "" 
-    x = 0         # Counter 
+    x = 0
     for q in Quarters:
         arcpy.AddMessage(x) 
         if q == QuarterSection:
@@ -97,10 +97,10 @@ if Section != "00":
 with arcpy.da.UpdateCursor(MapLayer,['MapNumber','MapScale','County','ORMapNum','CityName','PageName','Book','GroupName','SecondTitle','ReliaCode','MapAngle',"MapTitle"]) as cursor:
     for row in cursor:
         row[0] = MapNumber
-        if row[1] is None:       
-            row[1] = MapScale
-        if row[2] is None:               
-            row[2] = County
+        #if row[1] is None:       
+        row[1] = MapScale
+        #if row[2] is None:               
+        row[2] = County
         row[3] = County + Town + TownPart + TownDir + Range + RangePart + RangeDir + Section + QuarterSection + QtrQtrSection + Anomaly + MapSuffixType + MapSuffixNumber
         row[4] = CityName
         row[5] = PageName
@@ -111,17 +111,7 @@ with arcpy.da.UpdateCursor(MapLayer,['MapNumber','MapScale','County','ORMapNum',
         if MapAngle.isnumeric(): row[10] = MapAngle
         row[11] = Title 
         cursor.updateRow(row)
-del row
-
-theFields = ['MAPNUMBER', 'PAGENUMBER']
-page = 1
-with arcpy.da.UpdateCursor(MapLayer, theFields, sql_clause=(None, 'ORDER BY MAPNUMBER ASC')) as cursor:
-    for this_row in cursor:
-        arcpy.AddMessage(str(page))
-        this_row[1] = page
-        page += 1
-        cursor.updateRow(this_row)
-
+del row                
 
 
 

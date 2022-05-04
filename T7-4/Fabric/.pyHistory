@@ -7,3 +7,17 @@ arcpy.CalculateField_management(ORCATSXREFOUT,"Real_Xref.ORCATSRECORD",'!Real_Le
 arcpy.CalculateField_management(ORCATSXREFOUT,"ORCATSRECORD",'!SUBDIVISION!',"PYTHON3"
 arcpy.CalculateField_management(ORCATSXREFOUT,"ORCATSRECORD",'!SUBDIVISION!',"PYTHON3")
 arcpy.RemoveJoin_management (ORCATSXREFOUT)
+Library = '\\\\earth\\vol1\\gis\\AIGIS\\libraries\\taxmap\\'
+Tile = 'County'
+WorkGDB =  Library + Tile + "\\Fabric\\Default.gdb"
+OutGDB =  Library + Tile + "\\Fabric\\TownEd.gdb"
+TaxlotPt = OutGDB  + "/TaxlotsFD/TaxlotPoints"
+arcpy.MakeFeatureLayer_management(TaxlotPt, "TaxlotPt_lyr","MapTaxlot LIKE '%.%'")
+TaxlotPlyTmp = WorkGDB  + "/TaxlotPlyTmp"
+InTaxLotsPly = InGDB + "/TaxlotsFD/Taxlot"
+InGDB =  Library + Tile + "\\geodb\\townedgeo.gdb"
+InTaxLotsPly = InGDB + "/TaxlotsFD/Taxlot"
+arcpy.analysis.Intersect (["TaxlotPt_lyr", InTaxLotsPly], TaxlotPtTmp,"All")
+TaxlotPtTmp = WorkGDB  + "/TaxlotPtTmp"
+arcpy.analysis.Intersect (["TaxlotPt_lyr", InTaxLotsPly], TaxlotPtTmp,"All")
+arcpy.MakeFeatureLayer_management(TaxlotPt, "TaxlotPt_lyr2","MapTaxlot LIKE '%.%'")
