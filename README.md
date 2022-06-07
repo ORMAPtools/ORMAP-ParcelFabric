@@ -1,6 +1,10 @@
 # ORMAP Parcel Fabric project
 
-ReadMe - Version 1.07
+ReadMe
+
+## 2022-06-04
+
+Sample data in T7-4 updated to version 2.03
 
 ## Changes in 1.07
 

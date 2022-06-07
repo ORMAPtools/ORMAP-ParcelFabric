@@ -1,3 +1,12 @@
+Update 2.03 
+Dean - 6/4/2022
+
+1. Updated Annotation tasks. Added filters so that taxlots and taxlot_lines that were retired by record were not selected for calculating the correct underlying values. 
+2. Created a new tool - UpdateORMAPArea that updates the taxlotfeet,taxlotacres, and mapacres fields for selected taxlots 
+3. see #2 in the 2.02 update 
+4. Update Mapindex feature class for county (it was empty before) it is now #27. 
+
+
 Updates 2.02 
 Dean - 4/16/2022 
 
